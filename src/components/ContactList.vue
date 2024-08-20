@@ -1,15 +1,18 @@
-<script>
-export default {
-props: {
-contacts: { type: Array, default: [] },
-activeIndex: { type: Number, default: -1 },
-},
-emits: ["update:activeIndex"],
-methods: {
-updateActiveIndex(index) {
-this.$emit("update:activeIndex", index);
-}
-}
+<script setup>
+import { defineEmits, defineProps } from 'vue';
+
+// Khai báo props
+const props = defineProps({
+  contacts: { type: Array, default: () => [] },
+  activeIndex: { type: Number, default: -1 },
+});
+
+// Khai báo emits
+const emit = defineEmits(['update:activeIndex']);
+
+// Khai báo phương thức
+const updateActiveIndex = (index) => {
+  emit('update:activeIndex', index);
 };
 </script>
 

@@ -19,19 +19,24 @@
     </div>
 </template>
 
-<script>
-    export default {
-        props: {
-            modelValue: { type: String, default: "" },
-        },
-        emits: ["submit", "update:modelValue"],
-        methods: {
-            updateModelValue(e) {
-                this.$emit("update:modelValue", e.target.value);
-            },
-            submit() {
-                this.$emit("submit");
-            },
-        },
-    };
+<script setup>
+import { defineProps, defineEmits } from 'vue';
+
+// Khai báo props nhận từ component cha
+const props = defineProps({
+  modelValue: { type: String, default: "" },
+});
+
+// Khai báo sự kiện emits
+const emit = defineEmits(["submit", "update:modelValue"]);
+
+// Phương thức để cập nhật giá trị của modelValue
+const updateModelValue = (e) => {
+  emit("update:modelValue", e.target.value);
+};
+
+// Phương thức để phát ra sự kiện submit
+const submit = () => {
+  emit("submit");
+};
 </script>
